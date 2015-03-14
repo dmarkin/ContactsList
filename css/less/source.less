@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@height: 30px;
+@fontsize: 1em;
+
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.box-sizing(@sizing: border-box) {
+    -ms-box-sizing: @sizing;
+    -moz-box-sizing: @sizing;
+    -webkit-box-sizing: @sizing;
+    box-sizing: @sizing;
+}
+
+.main {
+    width: 70%;
+    margin: 20px auto 0 auto;
+    font: normal @fontsize/120% Arial, Helvetica, sans-serif;
+    color: #6a6a6a;
+}
+
+h2 {
+    font-size: @fontsize*1.25;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+button {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    .rounded-corners;
+}
+
+.btn-edit {
+    background-color: blue;
+}
+.btn-delete {
+    background-color: red;
+}
+.btn-add {
+    background-color: green;
+}
+
+.group-add {
+    width: 80px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+input[type="text"] {
+    height: @height;
+    margin-right: 3px;
+    .rounded-corners(3px);
+}
+
+.description {
+    width: 300px;
+}
+
+ul {
+    list-style: none;
+    margin-top: 5px;
+    .group-header {
+        display: inline-block;
+        width: 100%;
+        height: 31px;
+        .box-sizing;
+        padding: 2px;
+        background-color: #b3b3b3;
+        .rounded-corners(3px);
+        font-size: @fontsize*1.25;
+        font-weight: bold;
+        .description-text {
+            font-size: 0.7em;
+            font-style: italic;
+            font-weight: normal;
+        }
+    }
+    li {
+        margin-bottom: 3px;
+    }
+}
+
+.contact {
+    display: inline-block;
+    width: 19%;
+    font-size: @fontsize;
+    overflow: hidden;
+}
+
+.contact-btns {
+    display: inline-block;
+    width: 22%;
+    text-align: right;
+}
