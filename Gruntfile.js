@@ -40,5 +40,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
 
     grunt.registerTask('default', ['jshint', 'less']);
-
+    grunt.registerTask('watch', ['watch']);
 };

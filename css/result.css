@@ -8,13 +8,11 @@
   font: normal 1em/120% Arial, Helvetica, sans-serif;
   color: #6a6a6a;
 }
-h2 {
-  font-size: 1.25em;
-  text-align: center;
+h1 {
+  font-size: 1.5em;
+  font-weight: bold;
   margin-bottom: 3px;
-}
-.wrapper {
-  width: 100%;
+  text-align: center;
 }
 button {
   width: 28px;
@@ -25,6 +23,12 @@ button {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+}
+.btn-save {
+  background-color: #ffb036;
+}
+.btn-esc {
+  background-color: #bbbbbb;
 }
 .btn-edit {
   background-color: blue;
@@ -51,7 +55,7 @@ input[type="text"] {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.description {
+.input-description {
   width: 300px;
 }
 ul {
@@ -61,18 +65,18 @@ ul {
 ul .group-header {
   display: inline-block;
   width: 100%;
-  height: 31px;
+  height: 34px;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 2px;
   background-color: #b3b3b3;
+  font-size: 1.25em;
+  font-weight: bold;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  font-size: 1.25em;
-  font-weight: bold;
 }
 ul .group-header .description-text {
   font-size: 0.7em;
@@ -80,16 +84,23 @@ ul .group-header .description-text {
   font-weight: normal;
 }
 ul li {
+  width: 100%;
   margin-bottom: 3px;
 }
-.contact {
+.contact,
+.contact-email {
   display: inline-block;
-  width: 19%;
   font-size: 1em;
-  overflow: hidden;
+  overflow: auto;
+}
+.contact {
+  width: 20%;
+}
+.contact-email {
+  width: 26%;
 }
 .contact-btns {
   display: inline-block;
-  width: 22%;
+  width: 12%;
   text-align: right;
 }

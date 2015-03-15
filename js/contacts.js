@@ -1,10 +1,10 @@
-var contacts = angular.module('contacts', [])
+angular.module('contacts', [])
     .controller('ContactListController', function ($scope) {
         $scope.currentGroupId = -1;
         $scope.currentContactId = -1;
         $scope.contacts = [{
             groupname: "Friends",
-            groupDescription: "My lovely friends",
+            groupDescription: "My dear friends",
             personalContacts: [{
                 name: "Denis Petrov",
                 mobilePhone: "+80679109090",
@@ -30,20 +30,19 @@ var contacts = angular.module('contacts', [])
         ];
 
         $scope.addGroup = function (groupId) {
-            console.log(groupId);
+            $scope.clearForm();
             $scope.currentGroupId = groupId;
-            console.log($scope.contactLength);
         };
 
         $scope.editGroup = function (groupId) {
-            console.log(groupId);
+            $scope.clearForm();
             $scope.currentGroupId = groupId;
             $scope.groupname = $scope.contacts[groupId].groupname;
             $scope.groupDescription = $scope.contacts[groupId].groupDescription;
         };
 
         $scope.saveGroup = function () {
-            console.log($scope.currentGroupId, $scope.contacts.length);
+            //if groupname not void and not included to the contacts group-list (adding new group)
             if (!$scope.contacts.some(function (elem) {
                     return elem.groupname === $scope.groupname;
                 })) {
@@ -54,9 +53,9 @@ var contacts = angular.module('contacts', [])
                         personalContacts: []
                     });
                     $scope.contactLength += 1;
-                    console.log($scope.contactLength);
                 }
             }
+            //if groupname not void and included to the contacts group-list (editing existing group)
             if ($scope.currentGroupId < $scope.contacts.length && $scope.groupname) {
                 var groupId = $scope.currentGroupId;
                 $scope.contacts[groupId].groupname = $scope.groupname;
@@ -66,21 +65,20 @@ var contacts = angular.module('contacts', [])
         };
 
         $scope.deleteGroup = function (groupId) {
-            console.log(groupId);
             $scope.contacts.splice(groupId, 1);
             $scope.contactLength -= 1;
             $scope.clearForm();
-            console.log($scope.contactLength);
         };
 
         $scope.addContact = function (groupId, id) {
-            console.log(groupId, id);
+            $scope.clearForm();
             $scope.groupname = $scope.contacts[groupId].groupname;
             $scope.currentContactId = id;
             $scope.currentGroupId = groupId;
         };
 
         $scope.editContact = function (groupId, id) {
+            $scope.clearForm();
             $scope.currentGroupId = groupId;
             $scope.currentContactId = id;
             $scope.groupname = $scope.contacts[groupId].groupname;
@@ -91,15 +89,15 @@ var contacts = angular.module('contacts', [])
         };
 
         $scope.saveContact = function () {
+
             var id = $scope.currentContactId;
             var gid = $scope.currentGroupId;
-            console.log(gid, id);
-
+            console.log(id, gid, $scope.contacts[gid]);
+            //if name not void and not included to the contacts name-list of this group (adding new contact)
             if (!$scope.contacts[gid].personalContacts.some(function (elem) {
                     return elem.name === $scope.name;
-                })) {console.log($scope.groupLength);
+                })) {
                 if (id >= $scope.contacts[gid].personalContacts.length && $scope.name) {
-                    console.log(1);
                     $scope.contacts[gid].personalContacts.push({
                         name: $scope.name,
                         mobilePhone: $scope.mobilePhone,
@@ -107,11 +105,11 @@ var contacts = angular.module('contacts', [])
                         email: $scope.email
                     });
                     $scope.groupLength += 1;
-                    console.log($scope.groupLength);
                 }
             }
+
+            //if name not void and included to the contacts name-list of this group (editing existing contact)
             if ($scope.currentContactId < $scope.contacts[gid].personalContacts.length && $scope.name) {
-                console.log(2);
                 $scope.contacts[gid].personalContacts[id].name = $scope.name;
                 $scope.contacts[gid].personalContacts[id].mobilePhone = $scope.mobilePhone;
                 $scope.contacts[gid].personalContacts[id].workPhone = $scope.workPhone;
@@ -135,5 +133,4 @@ var contacts = angular.module('contacts', [])
             $scope.currentGroupId = -1;
             $scope.currentContactId = -1;
         };
-
     });

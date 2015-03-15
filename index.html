@@ -5,54 +5,86 @@
     <title>Contacts List</title>
     <link rel="stylesheet" href="css/result.css"/>
     <link rel="stylesheet" href="css/icons.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
+    <script src="js/angular.min.js"></script>
     <script src="js/contacts.js"></script>
 </head>
 <body>
 
 <div class="main" ng-controller="ContactListController" ng-init="contactLength = contacts.length">
-    <h2>Contacts List</h2>
+    <h1>Contacts List</h1>
 
     <form ng-hide="currentGroupId === -1 && currentContactId === -1">
-        <input type="text" ng-model="groupname" ng-hide="currentGroupId === -1 || currentContactId !== -1" maxlength="20" placeholder="Group Name"/>
-        <input type="text" class="description" ng-model="groupDescription" ng-hide="currentGroupId === -1 || currentContactId !== -1" maxlength="30" placeholder="Group Description"/>
+        <input type="text" ng-model="groupname" ng-hide="currentGroupId === -1 || currentContactId !== -1"
+               maxlength="20" placeholder="Group Name"/>
+        <input type="text" class="input-description" ng-model="groupDescription"
+               ng-hide="currentGroupId === -1 || currentContactId !== -1" maxlength="40"
+               placeholder="Group Description"/>
         <input type="text" ng-model="name" ng-hide="currentContactId === -1" placeholder="Name"/>
         <input type="text" ng-model="mobilePhone" ng-hide="currentContactId === -1" placeholder="Mobile Phone"/>
         <input type="text" ng-model="workPhone" ng-hide="currentContactId === -1" placeholder="Work Phone"/>
         <input type="text" ng-model="email" ng-hide="currentContactId === -1" placeholder="E-Mail"/>
-        <button class="btn-save" ng-hide="currentGroupId === -1 || currentContactId !== -1" ng-click="saveGroup()"><span class="glyphicon glyphicon-save"></span></button>
-        <button class="btn-save" ng-hide="currentContactId === -1" ng-click="saveContact()"><span class="glyphicon glyphicon-save"></span></button>
-        <button class="btn-esc" ng-click="clearForm()"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+        <button class="btn-save" ng-hide="currentGroupId === -1 || currentContactId !== -1" ng-click="saveGroup()">
+            <span class="glyphicon glyphicon-save"></span>
+        </button>
+        <button class="btn-save" ng-hide="currentContactId === -1" ng-click="saveContact()">
+            <span class="glyphicon glyphicon-save"></span>
+        </button>
+        <button type="button" class="btn-esc" ng-click="clearForm()">
+            <span class="glyphicon glyphicon-thumbs-down"></span>
+        </button>
     </form>
 
-    <ul ng-repeat="contact in contacts" ng-init="groupIndex = $index">
-        <div ng-init="groupLength = contact.personalContacts.length"></div>
+    <div>
+        <button class="btn-add group-add" ng-click="addGroup(contactLength)">
+            <span class="glyphicon glyphicon-plus-sign"></span> Group
+        </button>
+    </div>
 
+    <ul ng-repeat="contact in contacts" ng-init="groupIndex = $index">
+        <span ng-init="groupLength = contact.personalContacts.length"></span>
 
         <li class="group-header">
-            <div class="wrapper">
-            <div class="left">
-                <span>{{contact.groupname}}</span>
-                <span class="description-text">{{contact.groupDescription}}</span>
-                <button class="btn-edit" ng-click="editGroup($index)"><span class="glyphicon glyphicon-pencil"></span></button>
-                <button class="btn-delete" ng-click="deleteGroup($index)"><span class="glyphicon glyphicon-trash"></span></button>
-                <button class="btn-add group-add" ng-click="addGroup(contactLength)"><span class="glyphicon glyphicon-plus-sign"></span> Group</button>
-            </div>
-            <div class="right">
-                <button class="btn-add" ng-click="addContact($index, groupLength)"><span class="glyphicon glyphicon-plus"></span></button>
-            </div>
-            </div>
+                <div class="left">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <span>{{contact.groupname}}</span>
+                    <span class="description-text">{{contact.groupDescription}}</span>
+                    <button class="btn-edit" ng-click="editGroup($index)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn-delete" ng-click="deleteGroup($index)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </div>
+                <div class="right">
+                    <button class="btn-add" ng-click="addContact($index, groupLength)">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
 
         </li>
         <li ng-repeat="person in contact.personalContacts | orderBy:'name'">
 
-            <div class="contact"><span class="glyphicon glyphicon-user"></span> {{person.name}}</div>
-            <div class="contact"><span class="glyphicon glyphicon-phone"></span> {{person.mobilePhone}}</div>
-            <div class="contact"><span class="glyphicon glyphicon-earphone"></span> {{person.workPhone}}</div>
-            <div class="contact"><span class="glyphicon glyphicon-envelope"></span> <a href="mailto: {{person.email}}">{{person.email}}</a></div>
+            <div class="contact">
+                <span class="glyphicon glyphicon-user"></span> {{person.name}}
+            </div>
+            <div class="contact">
+                <span class="glyphicon glyphicon-phone"></span> {{person.mobilePhone}}
+            </div>
+            <div class="contact">
+                <span class="glyphicon glyphicon-earphone"></span> {{person.workPhone}}
+            </div>
+            <div class="contact-email">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <a href="mailto: {{person.email}}">{{person.email}}</a>
+            </div>
             <div class="contact-btns">
-                <button class="btn-edit" ng-click="editContact(groupIndex, $index)"><span class="glyphicon glyphicon-pencil"></span></button>
-                <button class="btn-delete" ng-click="deleteContact(groupIndex, $index)"><span class="glyphicon glyphicon-trash"></span></button>
+                <button class="btn-edit" ng-click="editContact(groupIndex, $index)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn-delete" ng-click="deleteContact(groupIndex, $index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
             </div>
         </li>
     </ul>

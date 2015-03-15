@@ -26,14 +26,11 @@
     color: #6a6a6a;
 }
 
-h2 {
-    font-size: @fontsize*1.25;
-    text-align: center;
+h1 {
+    font-size: @fontsize*1.5;
+    font-weight: bold;
     margin-bottom: 3px;
-}
-
-.wrapper {
-    width: 100%;
+    text-align: center;
 }
 
 button {
@@ -45,12 +42,22 @@ button {
     .rounded-corners;
 }
 
+.btn-save {
+    background-color: #ffb036;
+}
+
+.btn-esc {
+    background-color: #bbbbbb;
+}
+
 .btn-edit {
     background-color: blue;
 }
+
 .btn-delete {
     background-color: red;
 }
+
 .btn-add {
     background-color: green;
 }
@@ -73,7 +80,7 @@ input[type="text"] {
     .rounded-corners(3px);
 }
 
-.description {
+.input-description {
     width: 300px;
 }
 
@@ -83,33 +90,41 @@ ul {
     .group-header {
         display: inline-block;
         width: 100%;
-        height: 31px;
+        height: 34px;
         .box-sizing;
         padding: 2px;
         background-color: #b3b3b3;
-        .rounded-corners(3px);
         font-size: @fontsize*1.25;
         font-weight: bold;
+        .rounded-corners(3px);
         .description-text {
-            font-size: 0.7em;
+            font-size: @fontsize*0.7;
             font-style: italic;
             font-weight: normal;
         }
     }
     li {
+        width: 100%;
         margin-bottom: 3px;
     }
 }
 
-.contact {
+.contact, .contact-email {
     display: inline-block;
-    width: 19%;
     font-size: @fontsize;
-    overflow: hidden;
+    overflow: auto;
+}
+
+.contact {
+    width: 20%;
+}
+
+.contact-email {
+    width: 26%;
 }
 
 .contact-btns {
     display: inline-block;
-    width: 22%;
+    width: 12%;
     text-align: right;
 }
